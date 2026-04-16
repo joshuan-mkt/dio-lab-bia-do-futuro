@@ -10,7 +10,7 @@ O agente vai fazer análises de mercado para iniciantes em Swing Trade.
 ### Solução
 > Como o agente resolve esse problema de forma proativa?
 
-Vai ser um agente que vai explicar de forma facilitada como funcionam alguns ativos e seus conceitos, coletar informações, sugestões e dúvidas do cliente sem julgar suas decisões, comparar  opções de investimentos com a base de dados atualizada constantemente e ajudar o cliente a entender sem recomendar nada.
+Vai ser um agente que vai explicar de forma facilitada como funcionam alguns ativos e seus conceitos, coletar informações, sugestões e dúvidas do cliente sem julgar suas decisões, comparar  opções de investimentos com a base de dados e ajudar o cliente a entender sem recomendar nada.
 
 ### Público-Alvo
 > Quem vai usar esse agente?
