@@ -39,18 +39,14 @@ O Fundo Multimercado foi substituído pelo Fundo Imobiliário (FII), pois já ut
 Existem duas possibilidades, injetar os dados diretamente no prompt (Ctrl + C, Ctrl + V), ou carregar os arquivos via código, como no exemplo abaixo:
 
 ```Python
-import pandas as pd
 import json
+import pandas as pd
 
-#CSVs
-historico = pd.read_csv('data/historico_atendimento.csv')
-trasacoes = pd.read_csv('data/transacoes.csv')
-
-#JSONs
-with open('data/perfil_investidor.json', 'r', encoding='utf-8') as f:
-        perfil = json.load(f)
-with open('data/produtos_financeiros.json', 'r', encoding = 'utf-8') as f:
-        produto = json.load(f)
+# CARREGAR DADOS
+perfil = json.load(open('./data/perfil.json'))
+transacoes = pd.read_csv(open('./data/transacoes.csv'))
+historico = pd.read_csv(open('./data/historico.csv'))
+produtos = json.load(open('./data/produtos.json'))
 ```
 
 ### Como os dados são usados no prompt?
@@ -178,4 +174,21 @@ PRODUTOS DISPONÍVEIS PARA EXPLICAR:
 - Fundo Imobiliário (risco moderado)
 - Fundo de ações (risco alto)
 ...
+```
+```Python
+# MONTAR CONTEXTO
+contexto = f"""
+CLIENTE: {perfil['nome']}, {perfil['idade']} anos, {perfil['perfil_investidor']}
+OBJETIVO: {perfil['objetivo_principal']} 
+PATRIMÔNIO: R$ {perfil['patrimonio_total']} | RESERVA: R${perfil['reserva_emergencia_atual']}
+
+TRANSAÇÕES RECENTES:
+{transacoes.to_string(index=False)}
+
+ATENDIMENTOS ANTERIORES:
+{historico.to_string(index=False)}
+
+PRODUTOS DISPONÍVEIS:
+{json.dumps(produtos, indent=2, ensure_ascii=False)}
+"""
 ```
